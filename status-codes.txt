@@ -1,0 +1,9 @@
+
+
+HTTP Status Codes:
+
+    100-199 - informational messages 
+    200-299 - OK - the request from the browser was processed by the server
+    300-399 - redirect messages
+    400-499 - the request from the client has an error - "It's your fault!"
+    500-599 - the request is OK, but the server failed - "It's my fault!"
