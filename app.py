@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 
 import datetime
 
@@ -7,15 +7,9 @@ app = Flask(__name__)
 
 @app.get("/")       #HTTP request:  GET /
 def index():
-    ##return datetime.datetime.now().ctime()
-    with open("index.html") as f:
-        html = f.read()
-    return html
-
-@app.get("/hello")  #HTTP request:  GET /hello
-def hello():
-    return "Hello from my first flask webapp. it's your fault."
-
+    return render_template("index.html",
+                        title="Welcome!",
+                        headings="Tell us about yourself",)
 
 @app.get("/showform")
 def display_form():
@@ -23,9 +17,9 @@ def display_form():
         Retrieve the form.html file from the hard disk, and send it to the
         browser.
     """
-    with open("form.html") as f:
-        html = f.read()
-    return html
+    return render_template("form.html",
+                        title="Welcome Form",
+                        heading="Please fill in this form")
 
 @app.post("/processform")
 def save_data():
@@ -43,8 +37,6 @@ def save_data():
     with open("suckers.txt", "a") as sf:
         print(f"{the_first}, {the_last}, {the_dob}", file=sf)
     return f"Thanks, {the_first}, we promise not to sell your data to the bad guys."
-
-
 
 
 if __name__== "__main__":

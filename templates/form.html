@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Welcome - tell me about you</title>
-    </head>
+{% extends "base.html" %}
 
-    <body>
-        <h2>Please fill in this form:</h2>
-
+{% block body %}
         <form action="/processform" method="post">
             First name: <input type="text" name="first"> <br />
             Last name: <input type="text" name="last"><br />
             DOB: <input type="text" name="dob"><br />
         <input type="submit" value="Do it !">
         </form>
-    </body>
-</html>
+{% endblock %}
