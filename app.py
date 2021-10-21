@@ -1,15 +1,15 @@
 from flask import Flask, request, render_template
-
 import datetime
 
 app = Flask(__name__)
 
 
-@app.get("/")       #HTTP request:  GET /
+@app.get("/")  # HTTP request:   GET  /
 def index():
     return render_template("index.html",
-                        title="Welcome!",
-                        headings="Tell us about yourself",)
+                           title="Welcome!",
+                           heading="Tell us about yourself",)
+
 
 @app.get("/showform")
 def display_form():
@@ -18,26 +18,27 @@ def display_form():
         browser.
     """
     return render_template("form.html",
-                        title="Welcome Form",
-                        heading="Please fill in this form")
+                           title="Welcome Form",
+                           heading="Please fill in this form",)
+
 
 @app.post("/processform")
 def save_data():
     """
-        Recieve the data from the HTML form, then save it to a disk file, then respond
+        Receive the data from the HTML form, then save it to a disk file, then respond
         with a nice friendly message to the awaiting browser.
 
-        The following inputs are expected: first, last and dob.
+        The following inputs are expected: first, last, and dob.
     """
     # python-name = html-name:
     the_first = request.form["first"]
-    the_last = request.form["last"]
-    the_dob = request.form["dob"]
-    # So...... now use the python -names in your code
+    the_last = request.form["last"] 
+    the_dob = request.form["dob"] 
+    # So... now, use the python-names in your code:
     with open("suckers.txt", "a") as sf:
         print(f"{the_first}, {the_last}, {the_dob}", file=sf)
-    return f"Thanks, {the_first}, we promise not to sell your data to the bad guys."
+    return f"Thanks, {the_first}, we promise not to sell your data to the bad guys."    
 
 
-if __name__== "__main__":
+if __name__ == "__main__":
     app.run(debug=True)
